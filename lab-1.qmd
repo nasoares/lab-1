@@ -4,8 +4,6 @@ author: "Nicholas Soares"
 format: html
 embed-resources: true
 editor: source
-markdown: 
-    wrap: 72
 execute: 
   echo: true
   warnings: false
@@ -38,6 +36,7 @@ First, let's make sure you know how to use Markdown formatting to style a Quarto
 
 ```{r}
 #| echo: false
+#| label: plot_without_code
 
 ggplot(data = mpg, 
        mapping = aes(y = manufacturer, x = hwy)) + 
@@ -51,7 +50,8 @@ ggplot(data = mpg,
 6.  Using code chunk options, remove the messages about bandwidth `geom_density_ridges()` chose to use:
 
 ```{r}
-#| messages: false
+#| message: false
+#| label: remove_message
 
 ggplot(data = mpg, 
        mapping = aes(y = manufacturer, x = hwy)) + 
@@ -65,6 +65,8 @@ ggplot(data = mpg,
 7.  Using code chunk options, make it so that these plots are printed side-by-side:
 
 ```{r}
+#| layout: "[1, 1]"
+#| label: side_by_side_plots
 
 ggplot(data = mpg, 
        mapping = aes(y = manufacturer, x = hwy)) + 
@@ -87,12 +89,18 @@ ggplot(data = mpg,
 8.  Using code chunk options, make it so this chunk shows the code but not the output:
 
 ```{r}
+#| eval: False
+#| label: no_ouput
+
 2 + 2
 ```
 
 9.  Using code chunk options, make it so the file can still knit even though this chunk has an error
 
 ```{r}
+#| error: true
+#| label: error_mgmt
+
 2 + a
 ```
 
@@ -107,13 +115,20 @@ For these problems, we will continue to work with the `mpg` data frame, making v
 11. The `fl` variable describes the type of fuel for each car, with levels: `p`, `r`, `e`, `d`, and `c`. Do some research into what each of these labels mean! Then, use the `if_else()` function to create a new variable (`fuel_type`) with two levels: `petrol` (any car using petrolium-based gas) and `alternative energy` (any car not using petrolium-based gas).
 
 ```{r}
-
+mpg_alt<-mpg|>
+  mutate(fuel_type=if_else(mpg$fl=="p","petrol","alternativ energy"))
 ```
 
 12. The `drv` variable describes if the car has front drive (`f`), rear drive (`r`), or four wheel drive (`4`). Let's make better labels for these values! Specifically, use the `case_when()` function to change the `drv` varible to have the following levels: `front`, `rear`, `four wheel`.
 
 ```{r}
-
+mpg_alt<-mpg_alt|>
+  case_when(
+    drv == "f" ~ "front",
+    drv == "r" ~ "rear",
+    drv == "4" ~ "four wheel",
+    .default = "other"
+)
 ```
 
 (string split + remove extra ")" ) 13. The `trans` variable contains two pieces of information, (1) the transmission style (`auto` or `manual`) and the specific type of transmission (e.g., `l5`, `m5`). Using the `str_split()` function, create a new variable (`trans_type`) containing the specific type of transmission of each car. Once you've made this new variable, use the `rename()` function to change the name of the `trans` column to `trans_style`.\
@@ -127,4 +142,8 @@ For these problems, we will continue to work with the `mpg` data frame, making v
 
 14. Find someone who took Stat 331 from a different professor than you. Compare your experiences. Tell me their name and professor. List one or two things that you think you learned more about, and one or two things that they learned more about.
 
+Nathan, Glanz, twitter package, 
+
 15. Find someone in the class who **does not** share your birth month. Tell me their name and birthday, and use R to find out how many days apart your birthdays are.
+
+
