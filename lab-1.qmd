@@ -157,4 +157,10 @@ Nathan took STAT 331 with Dr. Glanz, but I had taken this class with Dr. Frame. 
 
 15. Find someone in the class who **does not** share your birth month. Tell me their name and birthday, and use R to find out how many days apart your birthdays are.
 
+Jose's birthday is on September 4th. 
 
+```{r}
+my.bday<-as.Date("Dec 15",format="%b %d")
+jose.bday<-as.Date("Sep 4",format="%b %d")
+my.bday-jose.bday
+```

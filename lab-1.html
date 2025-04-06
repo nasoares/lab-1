@@ -4547,6 +4547,15 @@ window.onload = function() {
 <ol start="15" type="1">
 <li>Find someone in the class who <strong>does not</strong> share your birth month. Tell me their name and birthday, and use R to find out how many days apart your birthdays are.</li>
 </ol>
+<p>Jose’s birthday is on September 4th.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>my.bday<span class="ot">&lt;-</span><span class="fu">as.Date</span>(<span class="st">&quot;Dec 15&quot;</span>,<span class="at">format=</span><span class="st">&quot;%b %d&quot;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>jose.bday<span class="ot">&lt;-</span><span class="fu">as.Date</span>(<span class="st">&quot;Sep 4&quot;</span>,<span class="at">format=</span><span class="st">&quot;%b %d&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>my.bday<span class="sc">-</span>jose.bday</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 102 days</code></pre>
+</div>
+</div>
 </section>
 
 </main>
